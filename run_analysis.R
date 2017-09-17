@@ -1,17 +1,17 @@
 library(data.table)
 library(dplyr)
 
-label_preamble = '^[0-9 ]+'
+label_preamble <- '^[0-9 ]+'
 activity_labels <- gsub(
     label_preamble,
     '', 
     readLines('UCI HAR Dataset/activity_labels.txt')
 )
-variable_names <- gsub(
+variable_names <- tolower(gsub(
     label_preamble,
     '',
     readLines('UCI HAR Dataset/features.txt')
-)
+))
 variable_names <- gsub('[\\,\\-]', '_', variable_names)
 variable_names <- gsub('[\\(\\)]', '', variable_names)
 
