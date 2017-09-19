@@ -13,29 +13,18 @@ loadUCIDataset <- function(dataFile, labelFile, subjectFile) {
         '',
         readLines('UCI HAR Dataset/features.txt')
     )
-    
-    data <- data.table(read.table(dataFile))
+
+    data <- fread(dataFile)
     names(data) <- variableNames
-    
-    data[,activity:=as.factor(readLines(labelFile))]
-    data[,subject:=as.factor(readLines(subjectFile))]
-    data[,which(duplicated(names(data))) := NULL]
-    
+    data[, grep('std\\(\\)|mean\\(\\)', names(data), invert=TRUE) := NULL]
+    data[, activity:=as.factor(readLines(labelFile))]
+    data[, subject:=as.factor(readLines(subjectFile))]
     levels(data$activity) <- activityLabels
-    
-    data <- select(
-        data,
-        contains('std()'),
-        contains('mean()'),
-        'activity', 
-        'subject'
-    )
     names(data) <- gsub('[\\,\\-]', '_', names(data))
     names(data) <- gsub('[\\(\\)]', '', names(data))
     
     return(data)
 }
-
 
 
 testData <- loadUCIDataset(
@@ -48,8 +37,18 @@ trainData <- loadUCIDataset(
     'UCI HAR Dataset/train/y_train.txt', 
     'UCI HAR Dataset/train/subject_train.txt'
 )
+allData <- rbindlist(list(testData, trainData))
 
-allData <- rbind(testData, trainData)
+averages <- allData[, lapply(.SD, mean), by=list(activity, subject)]
+averages[
+    , 
+    subject := factor(
+        subject, 
+        sort(as.numeric(unique(subject))),
+        ordered = TRUE
+    )
+]
+averages[, activity := factor(activity, sort(unique(activity)), ordered = TRUE)]
+setorder(averages, subject, -activity)
 
-
-write.table(allData, 'tidy_data.txt')
+fwrite(averages, 'tidy_data.txt')
