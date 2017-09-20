@@ -1,6 +1,5 @@
 # Extract averages of specific fields in the UCI HAR Dataset
-# for each activity and subject and store in a tidy
-# dataset
+# for each activity and subject and store in a tidy dataset
 
 library(data.table)
 
