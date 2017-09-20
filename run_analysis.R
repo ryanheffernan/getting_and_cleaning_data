@@ -60,6 +60,8 @@ activityLabels <- gsub(
 levels(allData$activity) <- activityLabels
 
 averages <- allData[, lapply(.SD, mean), by=list(activity, subject)]
+names(averages)[3:ncol(averages)] <- 
+    paste0(names(averages)[3:ncol(averages)], '__mean')
 
 for (a in levels(averages$activity)) {
     fwrite(
