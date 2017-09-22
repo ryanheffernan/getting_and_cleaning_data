@@ -1,12 +1,4 @@
-# Example script to use read the tidy dataset files into 
-# one data.table
+# Example script to use read the tidy dataset file
 
 library(data.table)
-
-df <- rbindlist(
-    lapply(
-        list.files('tidy_dataset/', '.*\\.txt$', full.names = TRUE), 
-        fread, 
-        header=TRUE
-    )
-)
+data <- fread("tidy_data.txt")

@@ -13,8 +13,8 @@ loadUCIDataset <- function(dataFile, activityFile, subjectFile) {
     )
     names(data) <- variableNames
     data[, grep('std\\(\\)|mean\\(\\)', names(data), invert=TRUE) := NULL]
-    names(data) <- gsub('[\\,\\-]', '_', names(data))
-    names(data) <- gsub('[\\(\\)]', '', names(data))
+    names(data) <- gsub('\\-([sm])(\\w+)\\(\\)', '\\U\\1\\L\\2', names(data), perl=TRUE)
+    #names(data) <- gsub('[\\(\\)\\,\\-]', '', names(data))
     
     data[, activity:=as.factor(readLines(activityFile))]
     data[, subject:=as.factor(readLines(subjectFile))]
@@ -61,11 +61,7 @@ levels(allData$activity) <- activityLabels
 
 averages <- allData[, lapply(.SD, mean), by=list(activity, subject)]
 names(averages)[3:ncol(averages)] <- 
-    paste0(names(averages)[3:ncol(averages)], '__mean')
+    paste0('mean_', names(averages)[3:ncol(averages)])
 
-for (a in levels(averages$activity)) {
-    fwrite(
-        averages[activity == a], 
-        paste0('tidy_dataset/', tolower(a), '_averages.txt')
-    )
-}
+# Equivalent of write.table but much faster
+fwrite(averages, file='tidy_data.txt', sep=" ")
