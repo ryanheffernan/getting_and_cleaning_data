@@ -13,9 +13,13 @@ loadUCIDataset <- function(dataFile, activityFile, subjectFile) {
     )
     names(data) <- variableNames
     data[, grep('std\\(\\)|mean\\(\\)', names(data), invert=TRUE) := NULL]
-    names(data) <- gsub('\\-([sm])(\\w+)\\(\\)', '\\U\\1\\L\\2', names(data), perl=TRUE)
-    #names(data) <- gsub('[\\(\\)\\,\\-]', '', names(data))
-    
+    names(data) <- gsub(
+        '\\-([sm])(\\w+)\\(\\)', 
+        '\\U\\1\\L\\2',
+        names(data), 
+        perl=TRUE
+    )
+    names(data) <- gsub('\\-(\\w)$', '\\1', names(data))
     data[, activity:=as.factor(readLines(activityFile))]
     data[, subject:=as.factor(readLines(subjectFile))]
     return(data)

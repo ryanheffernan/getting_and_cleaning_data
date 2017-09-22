@@ -35,7 +35,7 @@ for (name in names(data[,!c("activity", "subject"), with=FALSE])) {
     
     # Match names like .*mean()-X
     orig <- gsub(
-        paste0(match, '\\-(\\w)'), 
+        paste0(match, '(\\w)'), 
         paste0(replace, '\\-\\U\\3'),
         orig,
         perl=TRUE
