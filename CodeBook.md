@@ -77,7 +77,7 @@ These variables all represent the mean of the corresponding feature values per a
 
 ### Full Variable List
 
-See ```UCI HAR Dataset/features_info.txt```` for details of the original measurements.
+See ```UCI HAR Dataset/features_info.txt``` for details of the original measurements.
 
 Variable | Description
 ------------------|------------
