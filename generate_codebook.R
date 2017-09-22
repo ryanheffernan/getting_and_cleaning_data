@@ -43,7 +43,7 @@ for (name in names(data[,!c("activity", "subject"), with=FALSE])) {
     description = paste(
         'Mean of the', 
         orig, 
-        'measurement for the corresponding subject and activity')
+        'measurements for the corresponding subject and activity')
     codebook <- append(codebook, paste(name, "|", description))
 }
 
