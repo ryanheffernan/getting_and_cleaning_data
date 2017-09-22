@@ -4,7 +4,7 @@ _Week 4 Project for "Getting and Cleaning Data" offered by Johns Hopkins Univers
 ### Repository Contents
 File or Directory | Description
 ------------------|------------
-original_dataset/ | Original raw dataset 
+UCI HAR Dataset/ | Original raw dataset 
 tidy_data.txt | Tidied dataset 
 CodeBook.md | Code Book describing the tidy dataset
 CodeBookTemplate.md | Template for the Code Book

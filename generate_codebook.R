@@ -11,8 +11,8 @@ codebook <- append(
       "### Full Variable List",
       "",
       paste(
-        "See original_dataset/features_info.txt for details",
-        "of the original measurements"
+        "See ```UCI HAR Dataset/features_info.txt```` for details",
+        "of the original measurements."
       ),
       "",
       "Variable | Description",

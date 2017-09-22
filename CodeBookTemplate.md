@@ -6,9 +6,9 @@ _Note: This codebook is generated, do not edit it directly. See the README for i
 
 The tidy dataset is represented in a 'long' or 'narrow' form, where each subject/activity combination is represented as 1 row. This results in 180 rows, which is 6 activity rows for each of the 30 subjects. 
 
-Each row also contains a variable representing the mean calculated over the original mean and std deviation measurements from the dataset for the corresponding subject and activity. There are 66 of these measurements, meaning each row has a total of 68 columns (66 measurements plus activity and subject).
+Each row also contains a variable representing the mean calculated over the original mean and standard deviation measurements from the dataset for the corresponding subject and activity. There are 66 of these measurements, meaning each row has a total of 68 columns (66 measurements plus activity and subject).
 
-The data is ordered by activity and then subject, purely because I thought it looked better :).
+The data is ordered by activity and then subject, purely because I thought it looked nice :).
 
 The long form was chosen for this data since I found it much easier to read and explore data with 68 columns vs the 408 or more that would be needed in a wide form. It's also very comvenient to group the data in the long form to produce interesting aggregations, for example to get the mean of all subjects per activity:
 
@@ -32,8 +32,9 @@ reshape(data, idvar="subject", timevar="activity", direction="wide")
 
 The following transformations were made in order to produce a tidy dataset.
 1. Variable names from ```UCI HAR Dataset/features.txt``` were used to label each column of the test and train datasets.
-1. Variables not containing the substrings ```std()``` or ```mean()``` were deleted. I chose to not include ```meanFreq()``` measurements as my interpretation of the assignment instructions was to only include pure mean/std values and the original description of meanFreq indicates it is a weighted average, which is not a pure mean.
+1. Variables not containing the substrings ```std()``` or ```mean()``` were deleted. I chose to not include ```meanFreq()``` measurements as my interpretation of the assignment instructions was to only include pure mean/std values and the original description of ```meanFreq()``` indicates it is a weighted average, which is not a pure mean.
 1. Parentheses and hyphens were removed from variable names to make them easier to read and type. I also capitalized the first letter of 'mean' and 'std' in the names to make it clear that this is part of the original variable name before I calculated a mean over subject/activity.
+1. 'mean_' was prepended to each measurement to make it clear that this is a mean over multiple measurements and not the original measurement.
 1. ```activity``` and ```subject``` columns were added containing the activity labels and subject IDs from the raw dataset. Since these represent labels and not measurements, they were treated as factors and not numerics.
 1. ```rbindlist``` was used to combine the test and train data into one dataset.
 1. The ```subject``` and ```activity``` factors were re-ordered based on their numerical ordering, and then the dataset was re-ordered by activity and subject in ascending order. This was done for neatness and readability.
@@ -54,7 +55,7 @@ user	0m15.488s
 sys	0m0.303s
 ```
 
-Whereas running the entire ```run_analysis.R``` script on the same machine takes 1.5 seconds.
+Whereas running the entire ```run_analysis.R``` script (which uses fread and data.table) on the same machine takes only 1.5 seconds.
 ```
 ryanheffern-mbp:getting_and_cleaning_data ryanheffernan$ time Rscript run_analysis.R
 

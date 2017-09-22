@@ -50,7 +50,7 @@ allData[
         ordered = TRUE
     )
 ]
-setorder(allData, activity, subject)
+setorder(allData, -activity, subject)
 
 activityLabels <- gsub(
     '^[0-9 ]+',
