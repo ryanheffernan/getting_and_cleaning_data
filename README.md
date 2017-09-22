@@ -8,25 +8,25 @@ original_dataset/ | Original raw dataset
 tidy_data.txt | Tidied dataset 
 CodeBook.md | Code Book describing the tidy dataset
 CodeBookTemplate.md | Template for the Code Book
-generate_codebook.R | Script to generate the Code Book from the CodeBookTemplate.ms and tidy_data.txt
-run_analysis.R | Script to product the tidy dataset from the raw dataset
+generate_codebook.R | Script to generate the Code Book from the Code Book Template and tidy dataset
+run_analysis.R | Script to produce the tidy dataset from the raw dataset
 
 
 ### Running the Code
-1. Clone the repo
+1. Clone the repo:
 
     ```
     git clone git@github.com:ryanheffernan/getting_and_cleaning_data.git
     ```
     
-1. Execute the R script from the root of the repo
+1. Execute the R script from the root of the repo:
 
     ```
     cd getting_and_cleaning_data
     Rscript run_analysis.R
     ```
 
-1. Alternatively, open run_analysis.R in RStudio and execute it. Ensure to ```setwd()`` to the root directory of this repo
+1. Alternatively, open ```run_analysis.R``` in RStudio and execute it. Ensure to ```setwd()``` to the root directory of this repo first.
 
 
 ### Updating the Code Book
@@ -36,7 +36,9 @@ I'm lazy and didn't want to type out the full variable list by hand, so I use a 
 To update the main contents of the Code Book, edit ```CodeBookTemplate.md``` and run ```generate_codebook.R``` to update ```CodeBook.md```:
 
 ```
+vi CodeBookTemplate.md
+...make changes and save...
 Rscript generate_codebook.R
 ```
 
-To update how the variable list is displayed, edit ```generate_codebook.R```.
+To update how the variable list is displayed, edit ```generate_codebook.R``` and run as above.

@@ -1,17 +1,32 @@
----
-output:
-  html_document: default
-  pdf_document: default
----
 ## CodeBook for the Tidy UCI HAR Dataset
 
-_Note: This codebook is generated, do not edit it directly. See the README for instructions on how to update_
+_Note: This codebook is generated, do not edit it directly. See the README for instructions on how to update._
 
 ### Structure of the tidy data
 
-The tidy dataset is represented in a 'long' or 'narrow' form, where each subject/activity combination is represented as 1 row. This results in 180 rows, since we have 30 subjects and 6 activities, and we have a measurement for every subject performing every activity (30x6 = 180). 
+The tidy dataset is represented in a 'long' or 'narrow' form, where each subject/activity combination is represented as 1 row. This results in 180 rows, which is 6 activity rows for each of the 30 subjects. 
 
-In addition to the subject and activity, each row contains a variable representing the mean calculated over the original measurements from the dataset for that subject and activity. Each row has 68 columns, one each for subject and activity plus 66 measurements. See below for more details about each variable.
+Each row also contains a variable representing the mean calculated over the original mean and std deviation measurements from the dataset for the corresponding subject and activity. There are 66 of these measurements, meaning each row has a total of 68 columns (66 measurements plus activity and subject).
+
+The data is ordered by activity and then subject, purely because I thought it looked better :).
+
+The long form was chosen for this data since I found it much easier to read and explore data with 68 columns vs the 408 or more that would be needed in a wide form. It's also very comvenient to group the data in the long form to produce interesting aggregations, for example to get the mean of all subjects per activity:
+
+```
+data[,lapply(.SD, mean), by=activity]
+```
+
+Or to simply filter it by one activity type:
+
+```
+data[activity == 'WALKING']
+```
+
+Finally, a wide form can easily produced using the ```reshape()``` function if needed:
+
+```
+reshape(data, idvar="subject", timevar="activity", direction="wide")
+```
 
 ### Transformations
 
