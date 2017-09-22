@@ -4,14 +4,15 @@ _Week 4 Project for "Getting and Cleaning Data" offered by Johns Hopkins Univers
 ### Repository Contents
 File or Directory | Description
 ------------------|------------
-UCI HAR Dataset/ | Original raw dataset 
-tidy_dataset/ | Tidied dataset 
+original_dataset/ | Original raw dataset 
+tidy_data.txt | Tidied dataset 
 CodeBook.md | Code Book describing the tidy dataset
+CodeBookTemplate.md | Template for the Code Book
+generate_codebook.R | Script to generate the Code Book from the CodeBookTemplate.ms and tidy_data.txt
 run_analysis.R | Script to product the tidy dataset from the raw dataset
-read_tidy_data.R | Example script to read the tidy dataset into an R data.table
+
 
 ### Running the Code
-
 1. Clone the repo
 
     ```
@@ -24,3 +25,18 @@ read_tidy_data.R | Example script to read the tidy dataset into an R data.table
     cd getting_and_cleaning_data
     Rscript run_analysis.R
     ```
+
+1. Alternatively, open run_analysis.R in RStudio and execute it. Ensure to ```setwd()`` to the root directory of this repo
+
+
+### Updating the Code Book
+
+I'm lazy and didn't want to type out the full variable list by hand, so I use a script to generate a portion of the CodeBook from the tidy dataset as well as a 'template' CodeBook which contains the rest of the code book details.
+
+To update the main contents of the Code Book, edit ```CodeBookTemplate.md``` and run ```generate_codebook.R``` to update ```CodeBook.md```:
+
+```
+Rscript generate_codebook.R
+```
+
+To update how the variable list is displayed, edit ```generate_codebook.R```.

@@ -1,4 +1,11 @@
+---
+output:
+  html_document: default
+  pdf_document: default
+---
 ## CodeBook for the Tidy UCI HAR Dataset
+
+_Note: This codebook is generated, do not edit it directly. See the README for instructions on how to update_
 
 ### Structure of the tidy data
 
@@ -10,7 +17,7 @@ In addition to the subject and activity, each row contains a variable representi
 
 The following transformations were made in order to produce a tidy dataset.
 1. Variable names from ```UCI HAR Dataset/features.txt``` were used to label each column of the test and train datasets.
-1. Variables not containing the substrings ```std()``` or ```mean()``` were deleted. I chose to not include meanFreq() measurements as my interpretation of the assignment instructions was to only include pure mean/std values and the original description of meanFreq indicates it is a weighted average, which is not a pure mean.
+1. Variables not containing the substrings ```std()``` or ```mean()``` were deleted. I chose to not include ```meanFreq()``` measurements as my interpretation of the assignment instructions was to only include pure mean/std values and the original description of meanFreq indicates it is a weighted average, which is not a pure mean.
 1. Parentheses and hyphens were removed from variable names to make them easier to read and type. I also capitalized the first letter of 'mean' and 'std' in the names to make it clear that this is part of the original variable name before I calculated a mean over subject/activity.
 1. ```activity``` and ```subject``` columns were added containing the activity labels and subject IDs from the raw dataset. Since these represent labels and not measurements, they were treated as factors and not numerics.
 1. ```rbindlist``` was used to combine the test and train data into one dataset.
@@ -52,5 +59,77 @@ and easier to type in code due to the removal of special characters.
 
 These variables all represent the mean of the corresponding feature values per activity per subject. In other words it's the mean of the original features grouped by activity and subject.
 
+### Full Variable List
 
+See original_dataset/features_info.txt for details of the original measurements
 
+Variable | Description
+------------------|------------
+activity | Activity label, one of WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING
+subject | Subject ID, 1 through 30
+mean_tBodyAccMean-X | Mean of the tBodyAcc-mean()-X measurement for the corresponding subject and activity
+mean_tBodyAccMean-Y | Mean of the tBodyAcc-mean()-Y measurement for the corresponding subject and activity
+mean_tBodyAccMean-Z | Mean of the tBodyAcc-mean()-Z measurement for the corresponding subject and activity
+mean_tBodyAccStd-X | Mean of the tBodyAcc-std()-X measurement for the corresponding subject and activity
+mean_tBodyAccStd-Y | Mean of the tBodyAcc-std()-Y measurement for the corresponding subject and activity
+mean_tBodyAccStd-Z | Mean of the tBodyAcc-std()-Z measurement for the corresponding subject and activity
+mean_tGravityAccMean-X | Mean of the tGravityAcc-mean()-X measurement for the corresponding subject and activity
+mean_tGravityAccMean-Y | Mean of the tGravityAcc-mean()-Y measurement for the corresponding subject and activity
+mean_tGravityAccMean-Z | Mean of the tGravityAcc-mean()-Z measurement for the corresponding subject and activity
+mean_tGravityAccStd-X | Mean of the tGravityAcc-std()-X measurement for the corresponding subject and activity
+mean_tGravityAccStd-Y | Mean of the tGravityAcc-std()-Y measurement for the corresponding subject and activity
+mean_tGravityAccStd-Z | Mean of the tGravityAcc-std()-Z measurement for the corresponding subject and activity
+mean_tBodyAccJerkMean-X | Mean of the tBodyAccJerk-mean()-X measurement for the corresponding subject and activity
+mean_tBodyAccJerkMean-Y | Mean of the tBodyAccJerk-mean()-Y measurement for the corresponding subject and activity
+mean_tBodyAccJerkMean-Z | Mean of the tBodyAccJerk-mean()-Z measurement for the corresponding subject and activity
+mean_tBodyAccJerkStd-X | Mean of the tBodyAccJerk-std()-X measurement for the corresponding subject and activity
+mean_tBodyAccJerkStd-Y | Mean of the tBodyAccJerk-std()-Y measurement for the corresponding subject and activity
+mean_tBodyAccJerkStd-Z | Mean of the tBodyAccJerk-std()-Z measurement for the corresponding subject and activity
+mean_tBodyGyroMean-X | Mean of the tBodyGyro-mean()-X measurement for the corresponding subject and activity
+mean_tBodyGyroMean-Y | Mean of the tBodyGyro-mean()-Y measurement for the corresponding subject and activity
+mean_tBodyGyroMean-Z | Mean of the tBodyGyro-mean()-Z measurement for the corresponding subject and activity
+mean_tBodyGyroStd-X | Mean of the tBodyGyro-std()-X measurement for the corresponding subject and activity
+mean_tBodyGyroStd-Y | Mean of the tBodyGyro-std()-Y measurement for the corresponding subject and activity
+mean_tBodyGyroStd-Z | Mean of the tBodyGyro-std()-Z measurement for the corresponding subject and activity
+mean_tBodyGyroJerkMean-X | Mean of the tBodyGyroJerk-mean()-X measurement for the corresponding subject and activity
+mean_tBodyGyroJerkMean-Y | Mean of the tBodyGyroJerk-mean()-Y measurement for the corresponding subject and activity
+mean_tBodyGyroJerkMean-Z | Mean of the tBodyGyroJerk-mean()-Z measurement for the corresponding subject and activity
+mean_tBodyGyroJerkStd-X | Mean of the tBodyGyroJerk-std()-X measurement for the corresponding subject and activity
+mean_tBodyGyroJerkStd-Y | Mean of the tBodyGyroJerk-std()-Y measurement for the corresponding subject and activity
+mean_tBodyGyroJerkStd-Z | Mean of the tBodyGyroJerk-std()-Z measurement for the corresponding subject and activity
+mean_tBodyAccMagMean | Mean of the tBodyAccMag-mean() measurement for the corresponding subject and activity
+mean_tBodyAccMagStd | Mean of the tBodyAccMag-std() measurement for the corresponding subject and activity
+mean_tGravityAccMagMean | Mean of the tGravityAccMag-mean() measurement for the corresponding subject and activity
+mean_tGravityAccMagStd | Mean of the tGravityAccMag-std() measurement for the corresponding subject and activity
+mean_tBodyAccJerkMagMean | Mean of the tBodyAccJerkMag-mean() measurement for the corresponding subject and activity
+mean_tBodyAccJerkMagStd | Mean of the tBodyAccJerkMag-std() measurement for the corresponding subject and activity
+mean_tBodyGyroMagMean | Mean of the tBodyGyroMag-mean() measurement for the corresponding subject and activity
+mean_tBodyGyroMagStd | Mean of the tBodyGyroMag-std() measurement for the corresponding subject and activity
+mean_tBodyGyroJerkMagMean | Mean of the tBodyGyroJerkMag-mean() measurement for the corresponding subject and activity
+mean_tBodyGyroJerkMagStd | Mean of the tBodyGyroJerkMag-std() measurement for the corresponding subject and activity
+mean_fBodyAccMean-X | Mean of the fBodyAcc-mean()-X measurement for the corresponding subject and activity
+mean_fBodyAccMean-Y | Mean of the fBodyAcc-mean()-Y measurement for the corresponding subject and activity
+mean_fBodyAccMean-Z | Mean of the fBodyAcc-mean()-Z measurement for the corresponding subject and activity
+mean_fBodyAccStd-X | Mean of the fBodyAcc-std()-X measurement for the corresponding subject and activity
+mean_fBodyAccStd-Y | Mean of the fBodyAcc-std()-Y measurement for the corresponding subject and activity
+mean_fBodyAccStd-Z | Mean of the fBodyAcc-std()-Z measurement for the corresponding subject and activity
+mean_fBodyAccJerkMean-X | Mean of the fBodyAccJerk-mean()-X measurement for the corresponding subject and activity
+mean_fBodyAccJerkMean-Y | Mean of the fBodyAccJerk-mean()-Y measurement for the corresponding subject and activity
+mean_fBodyAccJerkMean-Z | Mean of the fBodyAccJerk-mean()-Z measurement for the corresponding subject and activity
+mean_fBodyAccJerkStd-X | Mean of the fBodyAccJerk-std()-X measurement for the corresponding subject and activity
+mean_fBodyAccJerkStd-Y | Mean of the fBodyAccJerk-std()-Y measurement for the corresponding subject and activity
+mean_fBodyAccJerkStd-Z | Mean of the fBodyAccJerk-std()-Z measurement for the corresponding subject and activity
+mean_fBodyGyroMean-X | Mean of the fBodyGyro-mean()-X measurement for the corresponding subject and activity
+mean_fBodyGyroMean-Y | Mean of the fBodyGyro-mean()-Y measurement for the corresponding subject and activity
+mean_fBodyGyroMean-Z | Mean of the fBodyGyro-mean()-Z measurement for the corresponding subject and activity
+mean_fBodyGyroStd-X | Mean of the fBodyGyro-std()-X measurement for the corresponding subject and activity
+mean_fBodyGyroStd-Y | Mean of the fBodyGyro-std()-Y measurement for the corresponding subject and activity
+mean_fBodyGyroStd-Z | Mean of the fBodyGyro-std()-Z measurement for the corresponding subject and activity
+mean_fBodyAccMagMean | Mean of the fBodyAccMag-mean() measurement for the corresponding subject and activity
+mean_fBodyAccMagStd | Mean of the fBodyAccMag-std() measurement for the corresponding subject and activity
+mean_fBodyBodyAccJerkMagMean | Mean of the fBodyBodyAccJerkMag-mean() measurement for the corresponding subject and activity
+mean_fBodyBodyAccJerkMagStd | Mean of the fBodyBodyAccJerkMag-std() measurement for the corresponding subject and activity
+mean_fBodyBodyGyroMagMean | Mean of the fBodyBodyGyroMag-mean() measurement for the corresponding subject and activity
+mean_fBodyBodyGyroMagStd | Mean of the fBodyBodyGyroMag-std() measurement for the corresponding subject and activity
+mean_fBodyBodyGyroJerkMagMean | Mean of the fBodyBodyGyroJerkMag-mean() measurement for the corresponding subject and activity
+mean_fBodyBodyGyroJerkMagStd | Mean of the fBodyBodyGyroJerkMag-std() measurement for the corresponding subject and activity
